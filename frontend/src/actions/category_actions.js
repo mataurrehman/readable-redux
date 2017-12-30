@@ -1,4 +1,5 @@
-import { FETCH_ALL_CATEGORIES } from '../constants/actionlist'
+import * as category_actionlist from '../constants/category_actionlist'
+
 import API from './../constants/api'
 
 export function getAllCategories() {
@@ -12,7 +13,7 @@ export function getAllCategories() {
 
 function fetchCategorySuccess(data) {
     return {
-        type: FETCH_ALL_CATEGORIES,
+        type: category_actionlist.FETCH_ALL_CATEGORIES,
         data
     }
 }

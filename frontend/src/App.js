@@ -13,7 +13,7 @@ class App extends Component {
           <Route exact path='/' component={Home} />
           <Route exact path='/new' component={PostForm} />
           <Route exact path='/:category' component={Home} />
-          <Route exact path='/:postId/detail' component={PostDetail} />
+          <Route exact path='/:category/:post_id' component={PostDetail} />
           <Route exact path='/:category/:postId/edit' component={PostForm} />
         </Switch>
       </div>

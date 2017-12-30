@@ -1,4 +1,4 @@
-import { FETCH_ALL_POSTS, FETCH_CATEGORY_POSTS, VOTE_ON_POST, GET_SINGLE_POST, CREATE_POST, EDIT_POST, DELETE_POST, POST_SORT_ORDER } from '../constants/actionlist'
+import * as posts_actionlist from '../constants/posts_actionlist'
 import API from './../constants/api'
 import uuidv4 from 'uuid/v4'
 
@@ -12,7 +12,7 @@ export const getAllPosts = () => {
 }
 const fetchAllPostSuccess = (posts) => {
     return {
-        type: FETCH_ALL_POSTS,
+        type: posts_actionlist.FETCH_ALL_POSTS,
         posts
     }
 }
@@ -26,7 +26,7 @@ export const getCategoryPosts = (category) => {
 }
 const fecthCategoryPostSuccess = (posts) => {
     return {
-        type: FETCH_CATEGORY_POSTS,
+        type: posts_actionlist.FETCH_CATEGORY_POSTS,
         posts
     }
 }
@@ -40,7 +40,7 @@ export const postVote = (postId, vote) => {
 
 const postVoteSuccess = (post) => {
     return {
-        type: VOTE_ON_POST,
+        type: posts_actionlist.VOTE_ON_POST,
         post
     }
 }
@@ -55,7 +55,7 @@ export const editPost = (postId, postData) => {
 
 const postEditSuccess = (post) => {
     return {
-        type: EDIT_POST,
+        type: posts_actionlist.EDIT_POST,
         post
     }
 }
@@ -71,7 +71,7 @@ export const fetchSinglePost = (post_id) => {
 
 const fetchSinglePostSuccess = (post) => {
     return {
-        type: GET_SINGLE_POST,
+        type: posts_actionlist.GET_SINGLE_POST,
         post
     }
 }
@@ -84,7 +84,7 @@ export const deletePost = (post_id) => (dispatch) => {
 }
 const deletePostSuccess = (post) => {
     return {
-        type: DELETE_POST,
+        type: posts_actionlist.DELETE_POST,
         post
     }
 }
@@ -93,12 +93,12 @@ export function createPost(data, callback) {
     return dispatch => {
         API.post(`/posts`, postData).then(response => {
             callback();
-            dispatch({ type: CREATE_POST, post: response.data });
+            dispatch({ type: posts_actionlist.CREATE_POST, post: response.data });
         });
     };
 }
 export const setPostSortOrder = order => dispatch =>
   dispatch({
-    type: POST_SORT_ORDER,
+    type: posts_actionlist.POST_SORT_ORDER,
     order
   });

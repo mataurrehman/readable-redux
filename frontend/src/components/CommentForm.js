@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { editComment, addComment } from './../actions/comment_actions'
 
 class CommentForm extends Component {
-
     constructor(props){
         super(props)
         this.initialState = {
@@ -23,11 +22,11 @@ class CommentForm extends Component {
     handleSubmit(event) {
         event.preventDefault();
         if (this.props.comment) {
-            this.props.editComment(this.props.comment.id, {body:this.state.body, author:this.state.author}, () =>{
+            this.props.editComment(this.props.comment.id, {body:this.state.body, author:this.state.author,parentId:this.props.posts[0].id}, () =>{
                 this.props.toggleEdit();
             })
         } else {
-            this.props.addComment({body:this.state.body, author:this.state.author})
+            this.props.addComment({body:this.state.body, author:this.state.author,parentId:this.props.posts[0].id})
             this.setState(this.initialState)
         }
     }
@@ -76,4 +75,5 @@ class CommentForm extends Component {
         )
     }
 }
-export default connect(null, { editComment, addComment })(CommentForm)
+const mapStateToProps = ({ posts }) => ({ posts })
+export default connect(mapStateToProps, { editComment, addComment })(CommentForm)

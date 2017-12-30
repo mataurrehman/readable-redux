@@ -1,4 +1,4 @@
-import { POST_SORT_ORDER } from "../constants/actionlist";
+import { POST_SORT_ORDER } from "../constants/posts_actionlist";
 
 const inintialState = 'votescore';
 

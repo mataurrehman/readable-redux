@@ -1,10 +1,9 @@
-import { GET_ALL_COMMENTS, ADD_COMMENT, VOTE_ON_COMMENT, EDIT_COMMENT, DELETE_COMMENT } from '../constants/actionlist'
+import * as comment_actionlist from '../constants/comment_actionlist'
 import API from './../constants/api'
 import uuidv4 from 'uuid/v4'
 
 export const getPostComments = (post_id) => {
     return dispatch => {
-
         return API.get(`/posts/${post_id}/comments`)
             .then(response => {
                 dispatch(fetchPostCommentsSuccess(response.data))
@@ -13,7 +12,7 @@ export const getPostComments = (post_id) => {
 }
 const fetchPostCommentsSuccess = (comments) => {
     return {
-        type: GET_ALL_COMMENTS,
+        type: comment_actionlist.GET_ALL_COMMENTS,
         comments
     }
 }
@@ -27,7 +26,7 @@ export const VoteOnComment = (commentId, vote) => {
 
 const VoteOnCommentSuccess = (comment) => {
     return {
-        type: VOTE_ON_COMMENT,
+        type: comment_actionlist.VOTE_ON_COMMENT,
         comment
     }
 }
@@ -42,7 +41,7 @@ export const addComment = (data) => {
 
 const postCommentSuccess = (comment) => {
     return {
-        type: ADD_COMMENT,
+        type: comment_actionlist.ADD_COMMENT,
         comment
     }
 }
@@ -51,7 +50,7 @@ export const editComment = (commentId, postData, callback) => {
     return dispatch => {
         API.put(`comments/${commentId}`, postData).then(response => {
             callback();
-            dispatch({ type: EDIT_COMMENT, comment: response.data });
+            dispatch({ type: comment_actionlist.EDIT_COMMENT, comment: response.data });
         });
     };
 }
@@ -59,7 +58,7 @@ export const deleteComment = (commentId) => (dispatch) => {
     API.delete(`comments/${commentId}`)
         .then(response => {
             dispatch({
-                type: DELETE_COMMENT,
+                type: comment_actionlist.DELETE_COMMENT,
                 comment: response.data
             })
         });

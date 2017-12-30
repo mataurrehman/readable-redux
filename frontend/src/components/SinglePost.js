@@ -6,12 +6,12 @@ import moment from 'moment'
 
 class SinglePost extends Component {
     render() {
-        const { post } = this.props
+        const { post,commentCount } = this.props
         return (
             <div className="panel panel-primary" key={post.id}>
                 <div className="panel-heading">
                     <h3 className="panel-title">
-                        <Link to={`/${post.id}/detail`} >{post.title}</Link></h3>
+                        <Link to={`/${post.category}/${post.id}`} >{post.title}</Link></h3>
                 </div>
                 <div className="panel-body">
                     <li className="list-group-item text-left">
@@ -32,6 +32,7 @@ class SinglePost extends Component {
                                     <div className="badge">{moment(post.timestamp).format("dddd MMMM Do YYYY")}</div>
                                     <h4><span className="label label-primary">{post.category}</span></h4>
                                     <div> <span className="glyphicon glyphicon-user" aria-hidden="true"></span>{post.author}</div>
+                                    <div><span className="badge">{commentCount?commentCount:post.commentCount}</span> comments</div>
                                 </div>
                                 <div className="text-right col-md-3">
                                     <button type="button" className="btn btn-default btn-sm" onClick={() => this.props.postVote(post.id, 'upVote')}>

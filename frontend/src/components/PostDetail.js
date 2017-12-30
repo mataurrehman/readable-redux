@@ -13,8 +13,8 @@ class PostDetail extends Component {
         deleted: false
     }
     componentDidMount() {
-        this.props.fetchSinglePost(this.props.match.params.postId);
-        this.props.getPostComments(this.props.match.params.postId);
+        this.props.fetchSinglePost(this.props.match.params.post_id);
+        this.props.getPostComments(this.props.match.params.post_id);
     }
     componentWillReceiveProps(nextProps) {
         if (!nextProps.posts.length) {
@@ -38,7 +38,7 @@ class PostDetail extends Component {
                     <div className="row">
                         <div className="col-sm-12">
                             {posts.length ?
-                                <SinglePost post={posts[0]} />
+                                <SinglePost post={posts[0]} commentCount={comments.length}/>
                                 : ''
                             }
                             <h3>Comments</h3>
