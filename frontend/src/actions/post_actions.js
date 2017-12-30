@@ -91,9 +91,9 @@ const deletePostSuccess = (post) => {
 export function createPost(data, callback) {
     const postData = { ...data, id: uuidv4(), timestamp: Date.now() }
     return dispatch => {
-        API.post(`/posts`, postData).then(res => {
+        API.post(`/posts`, postData).then(response => {
             callback();
-            dispatch({ type: CREATE_POST, post: res.data });
+            dispatch({ type: CREATE_POST, post: response.data });
         });
     };
 }

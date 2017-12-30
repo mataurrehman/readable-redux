@@ -17,20 +17,6 @@ const fetchPostCommentsSuccess = (comments) => {
         comments
     }
 }
-// export const getCategoryPosts = (category) => {
-//     return dispatch => {
-//         return API.get(category + '/posts')
-//             .then(response => {
-//                 dispatch(fecthCategoryPostSuccess(response.data))
-//             });
-//     }
-// }
-// const fecthCategoryPostSuccess = (posts) => {
-//     return {
-//         type: FETCH_CATEGORY_POSTS,
-//         posts
-//     }
-// }
 export const VoteOnComment = (commentId, vote) => {
     return dispatch => {
         API.post(`comments/${commentId}`, { option: vote })
@@ -45,74 +31,36 @@ const VoteOnCommentSuccess = (comment) => {
         comment
     }
 }
-
-export const editComment = (commentId, postData) => {
+export const addComment = (data) => {
+    const postData = { ...data, id: uuidv4(), timestamp: Date.now() }
     return dispatch => {
-        API.put(`comments/${commentId}`, postData)
+        API.post(`comments`, postData)
             .then(response => response.data)
-            .then(comment => dispatch(editCommentSuccess(comment)))
+            .then(comment => dispatch(postCommentSuccess(comment)))
     }
 }
 
-const editCommentSuccess = (comment) => {
+const postCommentSuccess = (comment) => {
     return {
-        type: EDIT_COMMENT,
+        type: ADD_COMMENT,
         comment
     }
 }
 
+export const editComment = (commentId, postData, callback) => {
+    return dispatch => {
+        API.put(`comments/${commentId}`, postData).then(response => {
+            callback();
+            dispatch({ type: EDIT_COMMENT, comment: response.data });
+        });
+    };
+}
 export const deleteComment = (commentId) => (dispatch) => {
     API.delete(`comments/${commentId}`)
         .then(response => {
-            dispatch(deleteCommentSuccess(response.data))
+            dispatch({
+                type: DELETE_COMMENT,
+                comment: response.data
+            })
         });
 }
-const deleteCommentSuccess = (comment) => {
-    return {
-        type: DELETE_COMMENT,
-        comment
-    }
-}
-
-// export const fetchSinglePost = (post_id) => {
-//     return dispatch => {
-//         API.get(`posts/${post_id}`)
-//             .then(response => {
-//                 dispatch(fetchSinglePostSuccess(response.data))
-//             });
-//     }
-// }
-
-// const fetchSinglePostSuccess = (post) => {
-//     return {
-//         type: GET_SINGLE_POST,
-//         post
-//     }
-// }
-
-// export const deletePost = (post_id) => (dispatch) => {
-//     API.delete(`posts/${post_id}`)
-//         .then(response => {
-//             dispatch(deletePostSuccess(response.data))
-//         });
-// }
-// const deletePostSuccess = (post) => {
-//     return {
-//         type: DELETE_POST,
-//         post
-//     }
-// }
-// export function createPost(data, callback) {
-//     const postData = { ...data, id: uuidv4(), timestamp: Date.now() }
-//     return dispatch => {
-//         API.post(`/posts`, postData).then(res => {
-//             callback();
-//             dispatch({ type: CREATE_POST, post: res.data });
-//         });
-//     };
-// }
-// export const setPostSortOrder = order => dispatch =>
-//   dispatch({
-//     type: POST_SORT_ORDER,
-//     order
-//   });

@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
-    "immutability-helper": "^2.6.0",
     "moment": "^2.19.4",
     "react": "^16.1.1",
     "react-bootstrap": "^0.31.5",
@@ -15,8 +14,6 @@
     "react-router-redux": "^5.0.0-alpha.8",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
-    "redux-form": "^7.2.0",
-    "redux-persist": "^5.4.0",
     "redux-thunk": "^2.2.0",
     "sort-by": "^1.2.0"
   },

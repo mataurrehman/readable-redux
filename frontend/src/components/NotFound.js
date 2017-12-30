@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
-class NotFound extends Component {
-    render() {
-        return (
-            <div className="alert alert-danger" role="alert">
-                The resource you are looking for is not found on server, to see others
+const NotFound = () => {
+    return (
+        <div className="alert alert-danger" role="alert">
+            The resource you are looking for is not found on server, to see others
                 <Link to="/"> click here</Link>
-            </div>
-        )
-    }
+        </div>
+    )
 }
 export default NotFound
