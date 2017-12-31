@@ -1,6 +1,6 @@
 import * as posts_actionlist from '../constants/posts_actionlist'
 
-export default function category(state = [], action) {
+const post = (state = [], action) => {
     switch (action.type) {
         case posts_actionlist.FETCH_ALL_POSTS:
         case posts_actionlist.FETCH_CATEGORY_POSTS:
@@ -29,3 +29,5 @@ export default function category(state = [], action) {
             return state
     }
 }
+
+export default post

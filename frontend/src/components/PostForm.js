@@ -15,7 +15,7 @@ class PostForm extends Component {
         isEditMode: false,
         postDeleted: false
     }
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.match.params.postId) {
             this.setState({ isEditMode: true });
             this.props.fetchSinglePost(this.props.match.params.postId);

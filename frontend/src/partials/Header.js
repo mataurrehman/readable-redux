@@ -16,10 +16,9 @@ class Header extends Component {
               <Link className="navbar-brand" to="/">Ata Readable</Link>
             </div>
             <ul className="nav navbar-nav">
-              <li><Link to="/">All Categories</Link></li>
               {categories.map(category => (
                 <li key={category.path}>
-                  <Link to={'/' + category.path}>
+                  <Link to={`/${category.path}/posts`}>
                     {category.name}
                   </Link>
                 </li>

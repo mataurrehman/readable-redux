@@ -1,6 +1,6 @@
 import * as comment_actionlist from '../constants/comment_actionlist'
 
-export default function comments(state = [], action) {
+ const comments = (state = [], action) => {
     switch (action.type) {
         case comment_actionlist.GET_ALL_COMMENTS:
             return action.comments
@@ -18,3 +18,5 @@ export default function comments(state = [], action) {
             return state
     }
 }
+
+export default comments
